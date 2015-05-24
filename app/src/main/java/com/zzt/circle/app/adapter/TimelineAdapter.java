@@ -28,7 +28,7 @@ public class TimelineAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return msgLists.size();
+        return 2;
     }
 
     @Override
@@ -48,7 +48,10 @@ public class TimelineAdapter extends BaseAdapter {
         TextView tvPostTime = (TextView) layout.findViewById(R.id.tvPostTime);
         ImageView ivAvatar = (ImageView) layout.findViewById(R.id.ivAvatar);
         ImageView ivImage = (ImageView) layout.findViewById(R.id.ivImage);
-//        ivAvatar.
-        return null;
+        ivAvatar.setImageResource(R.mipmap.ic_launcher);
+        ivImage.setImageResource(R.mipmap.ic_launcher);
+        ivImage.setMaxHeight(ivImage.getWidth());
+        ivImage.setMinimumHeight(ivImage.getWidth());
+        return layout;
     }
 }
