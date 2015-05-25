@@ -9,6 +9,7 @@ import com.zzt.circle.app.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.SoftReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.Map;
  * Created by zzt on 15-5-18.
  */
 public class RemoteImageHelper {
-    private final Map<String, Drawable> cache = new HashMap<String, Drawable>();
+    private final Map<String, SoftReference<Drawable>> cache = new HashMap<String, SoftReference<Drawable>>();
 
     private InputStream download(String urlString) throws MalformedURLException, IOException {
         InputStream inputStream = (InputStream) new URL(urlString).getContent();
@@ -27,7 +28,7 @@ public class RemoteImageHelper {
 
     public void loadImage(final ImageView imageView, final String urlString, boolean useCache) {
         if (useCache&&cache.containsKey(urlString)) {
-            imageView.setImageDrawable(cache.get(urlString));
+            imageView.setImageDrawable(cache.get(urlString).get());
         }
 
         imageView.setImageResource(R.mipmap.ic_launcher);
@@ -49,7 +50,7 @@ public class RemoteImageHelper {
                     InputStream inputStream = download(urlString);
                     drawable = Drawable.createFromStream(inputStream, "src");
                     if (drawable != null) {
-                        cache.put(urlString, drawable);
+                        cache.put(urlString, new SoftReference<Drawable>(drawable));
                     }
                 } catch (Exception e) {
                     Log.e(this.getClass().getSimpleName(), "Image download failed", e);

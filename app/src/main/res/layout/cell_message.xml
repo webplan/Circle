@@ -36,10 +36,13 @@
     </LinearLayout>
 
     <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
             android:id="@+id/ivImage"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
             android:contentDescription="图片主体" />
 
     <TextView
