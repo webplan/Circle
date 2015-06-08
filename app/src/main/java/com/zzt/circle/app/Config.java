@@ -12,6 +12,9 @@ public class Config {
     public static final String APP_ID = "com.zzt.circle";
 
     public static final String ACTION_TIMELINE = "timeline";
+    public static final String ACCTION_LOGIN = "login";
+    public static final String ACTION_REGISTER = "register";
+    public static final String ACTION_GET_HOTSPOT = "get_hotspot";
 
     public static final String KEY_ACCOUNT = "account";
     public static final String KEY_TOKEN = "token";
@@ -23,8 +26,13 @@ public class Config {
     public static final String KEY_MSG_ID = "msg_id";
     public static final String KEY_AVATAR_URL = "avatar_url";
     public static final String KEY_NICKNAME = "nickname";
-    public static final String KEY_IMAGE_URL = "image_url";
+    public static final String KEY_PHOTO_URL = "image_url";
     public static final String KEY_TEXT_DESCROPTION = "text_description";
+    public static final String KEY_PASSWORD_MD5 = "password_md5";
+    public static final String KEY_HOTSPOTS = "hotspots";
+    public static final String KEY_HOTSPOT_ID = "hotspot_id";
+    public static final String KEY_X = "x";
+    public static final String KEY_Y = "y";
 
     public static final int RESULT_STATUS_SUCCESS = 1;
     public static final int RESULT_STATUS_FAIL = 0;

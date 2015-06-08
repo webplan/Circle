@@ -43,7 +43,7 @@
             android:adjustViewBounds="true"
             android:layout_gravity="center"
             android:scaleType="fitXY"
-            android:contentDescription="图片主体" />
+            android:contentDescription="@string/image_body" />
 
     <TextView
             android:layout_width="match_parent"

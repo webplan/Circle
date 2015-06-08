@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import com.zzt.circle.app.Config;
 import com.zzt.circle.app.R;
 import com.zzt.circle.app.adapter.TimelineAdapter;
 import com.zzt.circle.app.entity.ImageMessage;
@@ -33,10 +34,8 @@ public class TimelineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        account = Config.getCachedAccount(getActivity());
-//        token = Config.getCachedToken(getActivity());
-        account = "zzt";
-        token = "123456";
+        account = Config.getCachedAccount(getActivity());
+        token = Config.getCachedToken(getActivity());
         View rootView = inflater.inflate(R.layout.fragment_timeline, container, false);
         lvTimeline = (ListView) rootView.findViewById(R.id.lvTimeline);
         timelineAdapter = new TimelineAdapter(getActivity());

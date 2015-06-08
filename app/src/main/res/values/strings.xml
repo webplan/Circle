@@ -12,5 +12,7 @@
     <string name="three_days" >3天</string >
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
     <string name="publish">发布</string>
+    <string name="large_image">大图</string>
+    <string name="image_body">图片主体</string>
 
 </resources>

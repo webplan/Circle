@@ -8,16 +8,16 @@ public class ImageMessage {
     private String avatarURL;
     private String nickname;
     //    private Timestamp postTime;
-    private String imageURL;
+    private String photoURL;
     private String textDescription;
 //    private String soundDescriptionURL;
 
 
-    public ImageMessage(int msgID, String avatarURL, String nickname, String imageURL, String textDescription) {
+    public ImageMessage(int msgID, String avatarURL, String nickname, String photoURL, String textDescription) {
         this.msgID = msgID;
         this.avatarURL = avatarURL;
         this.nickname = nickname;
-        this.imageURL = imageURL;
+        this.photoURL = photoURL;
         this.textDescription = textDescription;
     }
 
@@ -33,8 +33,8 @@ public class ImageMessage {
         return nickname;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getPhotoURL() {
+        return photoURL;
     }
 
     public String getTextDescription() {

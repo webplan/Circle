@@ -82,7 +82,7 @@ public class TimelineAdapter extends BaseAdapter {
         holder.tvNickname.setText(msg.getNickname());
         holder.tvDescription.setText(msg.getTextDescription());
 
-        remoteImageHelper.loadImage(holder.ivImage, msg.getImageURL(), true);
+        remoteImageHelper.loadImage(holder.ivImage, msg.getPhotoURL(), true);
         remoteImageHelper.loadImage(holder.ivAvatar, msg.getAvatarURL(), true);
 
 //        holder.ivImage.setOnClickListener(new View.OnClickListener() {

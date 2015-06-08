@@ -28,7 +28,6 @@ public class Timeline {
             public void onSuccess(String result) {
                 try {
                     JSONObject obj = new JSONObject(result);
-                    System.out.println("Timeline" + result);
                     switch (obj.getInt(Config.KEY_STATUS)) {
                         case Config.RESULT_STATUS_SUCCESS:
                             if (successCallback != null) {
@@ -40,7 +39,7 @@ public class Timeline {
                                     msgs.add(new ImageMessage(msgObj.getInt(Config.KEY_MSG_ID),
                                             msgObj.getString(Config.KEY_AVATAR_URL),
                                             msgObj.getString(Config.KEY_NICKNAME),
-                                            msgObj.getString(Config.KEY_IMAGE_URL),
+                                            msgObj.getString(Config.KEY_PHOTO_URL),
                                             msgObj.getString(Config.KEY_TEXT_DESCROPTION)));
                                 }
                                 successCallback.onSuccess(obj.getInt(Config.KEY_PAGE), obj.getInt(Config.KEY_PERPAGE), msgs);
