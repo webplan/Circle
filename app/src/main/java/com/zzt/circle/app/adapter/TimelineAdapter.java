@@ -1,6 +1,7 @@
 package com.zzt.circle.app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zzt.circle.app.Config;
 import com.zzt.circle.app.R;
+import com.zzt.circle.app.activity.LargeImageActivity;
 import com.zzt.circle.app.entity.ImageMessage;
-import com.zzt.circle.app.tools.RemoteImageHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +25,11 @@ public class TimelineAdapter extends BaseAdapter {
     private List<ImageMessage> msgLists = new ArrayList<ImageMessage>();
     private Context context;
     private LinearLayout layout;
-    private RemoteImageHelper remoteImageHelper = new RemoteImageHelper();
+    private ImageLoader imageLoader;
 
     public TimelineAdapter(Context context) {
         this.context = context;
+        imageLoader = ImageLoader.getInstance();
     }
 
     public void addAll(List<ImageMessage> data) {
@@ -61,7 +65,7 @@ public class TimelineAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.cell_message, null);
             holder = new ViewHolder();
             holder.ivAvatar = (ImageView) convertView.findViewById(R.id.ivAvatar);
-            holder.ivImage = (ImageView) convertView.findViewById(R.id.ivImage);
+            holder.ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
             holder.tvNickname = (TextView) convertView.findViewById(R.id.tvNickname);
             holder.tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
 
@@ -69,36 +73,36 @@ public class TimelineAdapter extends BaseAdapter {
         }
 
         holder = (ViewHolder) convertView.getTag();
-        ViewGroup.LayoutParams lp = holder.ivImage.getLayoutParams();
+        ViewGroup.LayoutParams lp = holder.ivPhoto.getLayoutParams();
         lp.width = parentWidth;
         lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        holder.ivImage.setLayoutParams(lp);
+        holder.ivPhoto.setLayoutParams(lp);
 
-        holder.ivImage.setMaxWidth(parentWidth);
-        holder.ivImage.setMaxHeight(parentWidth * 5);
+        holder.ivPhoto.setMaxWidth(parentWidth);
+        holder.ivPhoto.setMaxHeight(parentWidth * 5);
 
-        ImageMessage msg = getItem(position);
+        final ImageMessage msg = getItem(position);
 
         holder.tvNickname.setText(msg.getNickname());
         holder.tvDescription.setText(msg.getTextDescription());
 
-        remoteImageHelper.loadImage(holder.ivImage, msg.getPhotoURL(), true);
-        remoteImageHelper.loadImage(holder.ivAvatar, msg.getAvatarURL(), true);
-
-//        holder.ivImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(context, LargeImageActivity.class);
-//                i.pu
-//            }
-//        });
+        imageLoader.displayImage(Config.SERVER_URL + msg.getPhotoURL(), holder.ivPhoto);
+        imageLoader.displayImage(Config.SERVER_URL + msg.getAvatarURL(), holder.ivAvatar);
+        holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, LargeImageActivity.class);
+                i.putExtra(Config.KEY_PHOTO_URL, msg.getPhotoURL());
+                context.startActivity(i);
+            }
+        });
 
         return convertView;
     }
 
     private static class ViewHolder {
         ImageView ivAvatar;
-        ImageView ivImage;
+        ImageView ivPhoto;
         TextView tvNickname;
         TextView tvDescription;
     }

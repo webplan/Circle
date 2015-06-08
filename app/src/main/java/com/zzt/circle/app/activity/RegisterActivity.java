@@ -5,14 +5,12 @@ import android.os.Bundle;
 import com.zzt.circle.app.R;
 
 /**
- * Created by zzt on 15-6-6.
+ * Created by zzt on 15-6-8.
  */
-public class LoginActivity extends Activity {
-    //    private
+public class RegisterActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.activity_register);
     }
 }

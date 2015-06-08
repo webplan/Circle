@@ -33,6 +33,7 @@ public class Timeline {
                             if (successCallback != null) {
                                 List<ImageMessage> msgs = new ArrayList<ImageMessage>();
                                 JSONArray timeline = obj.getJSONArray(Config.KEY_TIMELINE);
+                                System.out.println(timeline);
                                 JSONObject msgObj;
                                 for (int i = 0; i < timeline.length(); i++) {
                                     msgObj = timeline.getJSONObject(i);

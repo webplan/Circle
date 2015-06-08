@@ -157,6 +157,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
+                    System.out.println("timeline");
                     return new TimelineFragment();
                 case 1:
                     return new PlaceholderFragment();

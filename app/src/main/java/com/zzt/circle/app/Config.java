@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
  */
 public class Config {
     public static final String CHARSET = "UTF-8";
-    public static final String SERVER_URL = "http://192.168.56.1:8080";
+    public static final String SERVER_URL = "http://192.168.56.1:8080/";
     public static final String APP_ID = "com.zzt.circle";
 
     public static final String ACTION_TIMELINE = "timeline";

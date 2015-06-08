@@ -9,18 +9,25 @@ import at.markushi.ui.CircleButton;
 /**
  * Created by zzt on 15-6-8.
  */
-public class MyCircleButton extends CircleButton {
-    public MyCircleButton(Context context) {
+public class HotSpotButton extends CircleButton {
+    private int hotspotID;
+
+    public HotSpotButton(Context context, int hotspotID) {
         super(context);
+        this.hotspotID = hotspotID;
         setColor(Color.argb(200, 200, 200, 200));
         setLayoutParams(new ViewGroup.LayoutParams(50, 50));
     }
 
-    public MyCircleButton(Context context, AttributeSet attrs) {
+    public HotSpotButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MyCircleButton(Context context, AttributeSet attrs, int defStyle) {
+    public HotSpotButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    public int getHotspotID() {
+        return hotspotID;
     }
 }
