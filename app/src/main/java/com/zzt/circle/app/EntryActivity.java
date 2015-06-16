@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.zzt.circle.app.activity.LargeImageActivity;
+import com.zzt.circle.app.activity.LargePhotoActivity;
+import com.zzt.circle.app.activity.LoginActivity;
 import com.zzt.circle.app.activity.MainActivity;
 
 /**
@@ -19,16 +20,19 @@ public class EntryActivity extends Activity {
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
-        startActivity(new Intent(this, LargeImageActivity.class));
+        startActivity(new Intent(this, LargePhotoActivity.class));
 
-        Config.cacheToken(this, "812B4BA287F5EE0BC9D43BBF5BBE87FB");
-        Config.cacheAccount(this, "123");
+//        Config.cacheToken(this, "812B4BA287F5EE0BC9D43BBF5BBE87FB");
+//        Config.cacheAccount(this, "123");
         String token = Config.getCachedToken(this);
         String account = Config.getCachedAccount(this);
-//        if (token == null || account == null) {
-//            startActivity(new Intent(this, LoginActivity.class));
-//        } else {
+        if (token == null || account == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        } else {
             startActivity(new Intent(this, MainActivity.class));
-//        }
+            finish();
+        }
+//        startActivity(new Intent(this,LargePhotoActivity.class));
     }
 }

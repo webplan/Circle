@@ -3,26 +3,32 @@ package com.zzt.circle.app.entity;
 /**
  * Created by zzt on 15-5-31.
  */
-public class Hotspot {
+public class HotspotEntity {
     private int hotspotID;
-    private double x;
-    private double y;
+    private int x;
+    private int y;
+    private int count;
 
-    public Hotspot(int hotspotID, double x, double y) {
+    public HotspotEntity(int hotspotID, int x, int y, int count) {
         this.hotspotID = hotspotID;
         this.x = x;
         this.y = y;
+        this.count = count;
     }
 
     public int getHotspotID() {
         return hotspotID;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

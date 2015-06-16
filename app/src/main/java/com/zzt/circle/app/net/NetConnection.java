@@ -28,6 +28,7 @@ public class NetConnection {
                         paramsStr.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
                     }
                     paramsStr.deleteCharAt(paramsStr.length() - 1);
+                    System.out.println("request: " + url + "\n" + paramsStr);
                     URLConnection uc;
                     switch (method) {
                         case POST:
@@ -48,6 +49,7 @@ public class NetConnection {
                     while ((line = br.readLine()) != null) {
                         result.append(line);
                     }
+                    System.out.println("result: " + result);
                     return result.toString();
 
                 } catch (MalformedURLException e) {
@@ -74,11 +76,11 @@ public class NetConnection {
         }.execute();
     }
 
-    public static interface SuccessCallBack {
+    public interface SuccessCallBack {
         void onSuccess(String result);
     }
 
-    public static interface FailCallBack {
+    public interface FailCallBack {
         void onFail();
     }
 }

@@ -1,5 +1,6 @@
 package com.zzt.circle.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
 import com.zzt.circle.app.R;
+import com.zzt.circle.app.fragment.FriendsFragment;
+import com.zzt.circle.app.fragment.MyInfoFragment;
 import com.zzt.circle.app.fragment.TimelineFragment;
 
 import java.util.Locale;
@@ -89,6 +92,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, PostPhotoActivity.class));
             return true;
         }
 
@@ -160,7 +164,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     System.out.println("timeline");
                     return new TimelineFragment();
                 case 1:
-                    return new PlaceholderFragment();
+                    return new FriendsFragment();
+                case 2:
+                    return new MyInfoFragment();
             }
             return new PlaceholderFragment();
         }

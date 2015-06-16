@@ -3,7 +3,6 @@ package com.zzt.circle.app.widget;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
 import at.markushi.ui.CircleButton;
 
 /**
@@ -15,8 +14,8 @@ public class HotSpotButton extends CircleButton {
     public HotSpotButton(Context context, int hotspotID) {
         super(context);
         this.hotspotID = hotspotID;
-        setColor(Color.argb(200, 200, 200, 200));
-        setLayoutParams(new ViewGroup.LayoutParams(50, 50));
+        setColor(Color.argb(0, 50, 50, 50));
+        setAdjustViewBounds(true);
     }
 
     public HotSpotButton(Context context, AttributeSet attrs) {

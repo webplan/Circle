@@ -17,15 +17,13 @@ repositories {
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
     defaultConfig {
         applicationId "com.zzt.circle.app"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_6
         targetCompatibility JavaVersion.VERSION_1_6
@@ -37,6 +35,8 @@ android {
         }
     }
     dexOptions {
+    }
+    productFlavors {
     }
 }
 

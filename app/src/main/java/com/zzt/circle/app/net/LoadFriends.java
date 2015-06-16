@@ -1,7 +1,7 @@
 package com.zzt.circle.app.net;
 
 import com.zzt.circle.app.Config;
-import com.zzt.circle.app.entity.ImageMessageEntity;
+import com.zzt.circle.app.entity.UserEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,17 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by zzt on 15-5-25.
+ * Created by zzt on 15-6-6.
  */
-public class Timeline {
-
-    public Timeline(String account, String token, int page, int perpage, final SuccessCallback successCallback, final FailCallback failCallback) {
+public class LoadFriends {
+    public LoadFriends(String account, String token, final SuccessCallback successCallback, final FailCallback failCallback) {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put(Config.KEY_ACCOUNT, account);
         params.put(Config.KEY_TOKEN, token);
-        params.put(Config.KEY_PAGE, String.valueOf(page));
-        params.put(Config.KEY_PERPAGE, String.valueOf(perpage));
-        String actionURL = Config.SERVER_URL + Config.ACTION_TIMELINE + Config.SERVER_ACTION_SUFFIX;
+        String actionURL = Config.SERVER_URL + Config.ACTION_GET_FRIENDS + Config.SERVER_ACTION_SUFFIX;
         new NetConnection(actionURL, HttpMethod.POST, new NetConnection.SuccessCallBack() {
             @Override
             public void onSuccess(String result) {
@@ -30,25 +27,22 @@ public class Timeline {
                     switch (obj.getInt(Config.KEY_STATUS)) {
                         case Config.RESULT_STATUS_SUCCESS:
                             if (successCallback != null) {
-                                List<ImageMessageEntity> msgs = new ArrayList<ImageMessageEntity>();
-                                JSONArray timeline = obj.getJSONArray(Config.KEY_TIMELINE);
-                                JSONObject msgObj;
-                                for (int i = 0; i < timeline.length(); i++) {
-                                    msgObj = timeline.getJSONObject(i);
-                                    msgs.add(new ImageMessageEntity(msgObj.getInt(Config.KEY_MSG_ID),
-                                            msgObj.getString(Config.KEY_AVATAR_URL),
-                                            msgObj.getString(Config.KEY_NICKNAME),
-                                            msgObj.getLong(Config.KEY_POST_TIME),
-                                            msgObj.getString(Config.KEY_PHOTO_URL),
-                                            msgObj.getString(Config.KEY_TEXT_DESCRIPTION)));
+                                JSONArray array = obj.getJSONArray(Config.KEY_FRIENDS);
+                                List<UserEntity> friends = new ArrayList<UserEntity>();
+                                JSONObject friend;
+                                for (int i = 0; i < array.length(); i++) {
+                                    friend = array.getJSONObject(i);
+                                    friends.add(new UserEntity(friend.getString(Config.KEY_ACCOUNT),
+                                            friend.getString(Config.KEY_NICKNAME),
+                                            friend.getString(Config.KEY_AVATAR_URL)));
                                 }
-                                successCallback.onSuccess(msgs);
+                                successCallback.onSuccess(friends);
                             }
                             break;
                         default:
                             if (failCallback != null)
                                 failCallback.onFail(obj.getInt(Config.KEY_STATUS));
-                            break;
+
                     }
                 } catch (JSONException e) {
                     if (failCallback != null)
@@ -58,13 +52,14 @@ public class Timeline {
         }, new NetConnection.FailCallBack() {
             @Override
             public void onFail() {
-
+                if (failCallback != null)
+                    failCallback.onFail();
             }
         }, params);
     }
 
     public interface SuccessCallback {
-        void onSuccess(List<ImageMessageEntity> timeline);
+        void onSuccess(List<UserEntity> friends);
     }
 
     public interface FailCallback {

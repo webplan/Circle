@@ -8,13 +8,18 @@ import android.content.SharedPreferences;
  */
 public class Config {
     public static final String CHARSET = "UTF-8";
-    public static final String SERVER_URL = "http://192.168.56.1:8080/";
+    public static final String SERVER_URL = "http://192.168.1.107:8080/";
+    public static final String SERVER_ACTION_SUFFIX = ".action";
     public static final String APP_ID = "com.zzt.circle";
 
     public static final String ACTION_TIMELINE = "timeline";
     public static final String ACCTION_LOGIN = "login";
     public static final String ACTION_REGISTER = "register";
     public static final String ACTION_GET_HOTSPOT = "get_hotspot";
+    public static final String ACTION_GET_FRIENDS = "get_friends";
+    public static final String ACTION_POST_PHOTO = "post_photo";
+    public static final String ACTION_GET_COMMENTS = "get_comments";
+    public static final String ACTION_POST_COMMENT = "post_comment";
 
     public static final String KEY_ACCOUNT = "account";
     public static final String KEY_TOKEN = "token";
@@ -26,13 +31,20 @@ public class Config {
     public static final String KEY_MSG_ID = "msg_id";
     public static final String KEY_AVATAR_URL = "avatar_url";
     public static final String KEY_NICKNAME = "nickname";
-    public static final String KEY_PHOTO_URL = "image_url";
-    public static final String KEY_TEXT_DESCROPTION = "text_description";
+    public static final String KEY_PHOTO_URL = "photo_url";
+    public static final String KEY_TEXT_DESCRIPTION = "text_description";
     public static final String KEY_PASSWORD_MD5 = "password_md5";
     public static final String KEY_HOTSPOTS = "hotspots";
     public static final String KEY_HOTSPOT_ID = "hotspot_id";
     public static final String KEY_X = "x";
     public static final String KEY_Y = "y";
+    public static final String KEY_COUNT = "count";
+    public static final String KEY_FRIENDS = "friends";
+    public static final String KEY_PHOTO = "image";
+    public static final String KEY_POST_TIME = "post_time";
+    public static final String KEY_COMMENTS = "hotspots";
+    public static final String KEY_COMMENT_ID = "comment_id";
+    public static final String KEY_CONTENT = "content";
 
     public static final int RESULT_STATUS_SUCCESS = 1;
     public static final int RESULT_STATUS_FAIL = 0;
